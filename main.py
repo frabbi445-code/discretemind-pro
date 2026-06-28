@@ -1,16 +1,58 @@
 import streamlit as st
 import google.generativeai as genai
 import time
+import plotly.graph_objects as go
+import numpy as np
 
-# ১. পেজ সেটিংস ও প্রিমিয়াম শিরোনাম
+# ১. পেজ সেটিংস (১০০% এরর-ফ্রি স্ট্যান্ডার্ড মেথড)
 st.set_page_config(page_title="DiscreteMind AI Ultra Pro", page_icon="🧮", layout="centered")
 
-st.markdown("<h1 style='text-align: center; color: #1e3a8a;'>🚀 DiscreteMind AI Ultra Pro</h1>", unsafe_allowed_html=True)
-st.markdown("<p style='text-align: center; color: #475569; font-size: 1.2rem; font-weight: 500;'>Advanced Step-by-Step Discrete Mathematics Lab Solver</p>", unsafe_allowed_html=True)
-st.markdown("<p style='text-align: center; color: #64748b; font-size: 0.9rem;'>Presidency University | CSE Dept | AI Innovation Project</p>", unsafe_allowed_html=True)
+# শিরোনাম ও হেডার
+st.title("🚀 DiscreteMind AI Ultra Pro")
+st.subheader("Advanced 3D-Enhanced Discrete Mathematics Lab Solver")
+st.write("Presidency University | CSE Dept | AI Innovation Project")
 st.write("---")
 
-# ২. সাইডবার ডিজাইন
+# ২. ৩ডি অ্যানিমেটেড মডেল সেকশন (Interactive 3D Math/AI WebGL Model)
+st.write("### 🌐 Live 3D AI Topology Node Mesh (Lab Presentation Mode)")
+st.caption("মাউস দিয়ে স্ক্রল করে ৩ডি মডেলটি জুম করো এবং ড্র্যাগ করে চারদিকে ঘুরিয়ে স্যারদের দেখাও:")
+
+# ৩ডি ম্যাথমেটিক্যাল নোড জেনারেশন
+n_nodes = 40
+x = np.random.standard_normal(n_nodes)
+y = np.random.standard_normal(n_nodes)
+z = np.random.standard_normal(n_nodes)
+
+fig = go.Figure(data=[go.Scatter3d(
+    x=x, y=y, z=z,
+    mode='markers+lines',
+    marker=dict(
+        size=6,
+        color=z,                # কালার সেট করা হয়েছে ৩ডি ডেপ্থ অনুযায়ী
+        colorscale='Viridis',   # কালারফুল থিম
+        opacity=0.8
+    ),
+    line=dict(
+        color='#38bdf8',
+        width=1.5
+    )
+)])
+
+fig.update_layout(
+    margin=dict(l=0, r=0, b=0, t=0),
+    scene=dict(
+        xaxis=dict(showbackground=False, showticklabels=False, title=''),
+        yaxis=dict(showbackground=False, showticklabels=False, title=''),
+        zaxis=dict(showbackground=False, showticklabels=False, title=''),
+    ),
+    height=300
+)
+
+# স্ক্রিনে ৩ডি গ্রাফিক্স শো করা
+st.plotly_chart(fig, use_container_width=True)
+st.write("---")
+
+# ৩. সাইডবার ডিজাইন
 st.sidebar.header("🎓 Lab Project Profile")
 with st.sidebar.container(border=True):
     st.write("**Developer:** MD FAZLE RABBI SOHAN")
@@ -24,7 +66,7 @@ st.sidebar.header("🔗 Quick Navigation")
 st.sidebar.page_link("https://presidency.edu.bd/", label="Presidency University Portal", icon="🏫")
 st.sidebar.page_link("https://aistudio.google.com/", label="Google AI Studio", icon="🔑")
 
-# ৩. এপিআই কি কনফিগারেশন (গিটহাব ব্লক এড়ানোর সিকিউরড ট্রিক)
+# ৪. এপিআই কি কনফিগারেশন (গিটহাবের ব্লক এড়ানোর ওল্ড ট্রিক)
 a = "AQ.Ab8RN"
 b = "6LuMWnU"
 c = "QaZOOfRQ"
@@ -34,7 +76,7 @@ f = "jlmYymtq"
 g = "n-eZgw"
 SECURE_KEY = f"{a}{b}{c}{d}{e}{f}{g}"
 
-# ৪. ড্রপডাউন মেনু
+# ৫. ড্রপডাউন মেনু
 topic = st.selectbox(
     "🎯 সলভ করার জন্য ডিসক্রিট ম্যাথ টপিকটি সিলেক্ট করো:", 
     [
@@ -44,7 +86,7 @@ topic = st.selectbox(
     ]
 )
 
-# ৫. স্মার্ট প্র্যাকটিস কুইক বাটনসমূহ
+# ৬. স্মার্ট প্র্যাকটিস কুইক বাটনসমূহ
 st.write("💡 **স্মার্ট প্র্যাকটিস টুলস (যেকোনো একটি বাটনে ক্লিক করো):**")
 col1, col2, col3 = st.columns(3)
 
@@ -60,7 +102,7 @@ if col3.button("🔢 বিন্যাস ও সমাবেশ রান"):
 
 st.write("---")
 
-# 🔍 ইনপুট বক্স ও মেট্রিক্স
+# 🔍 ইনপুট বক্স ও লাইভ মেট্রিক্স
 user_query = st.text_area(
     "📝 তোমার ডিসক্রিট ম্যাথের প্রশ্নটি নিচে টাইপ করো বা এডিট করো:", 
     value=st.session_state.input_val,
@@ -79,7 +121,7 @@ st.write("")
 # অ্যাকশন বাটনসমূহ
 btn_col1, btn_col2 = st.columns([4, 1])
 with btn_col1:
-    solve_btn = st.button("🚀 এক্সপার্ট এআই সリューション জেনারেট করো", use_container_width=True)
+    solve_btn = st.button("🚀 এক্সপার্ট এআই সলিউশন জেনারেট করো", use_container_width=True)
 with btn_col2:
     if st.button("🗑️ Reset", use_container_width=True):
         st.session_state.input_val = ""
@@ -124,6 +166,7 @@ if solve_btn:
                 status_text.empty()
                 progress_bar.empty()
                 
+                # সাকসেস ফেস্টিভ্যাল ইফেক্ট
                 st.balloons()
                 st.success("🎉 সমাধান সফলভাবে তৈরি হয়েছে!")
                 
@@ -137,7 +180,7 @@ if solve_btn:
 
 st.write("---")
 
-# 🧠 ৬. কালারফুল ইন্টারঅ্যাক্টিভ কুইজ মডিউল
+# 🧠 ৭. কালারফুল ইন্টারঅ্যাক্টিভ কুইজ মডিউল
 st.subheader("🧠 Interactive Lab Quiz (Self-Test)")
 st.info("❓ **প্রশ্ন:** If a set has 4 elements, how many elements are there in its Power Set?")
 
