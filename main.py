@@ -4,20 +4,20 @@ import time
 import plotly.graph_objects as go
 import numpy as np
 
-# ১. পেজ সেটিংস (১০০% এরর-ফ্রি স্ট্যান্ডার্ড মেথড)
+# ১. পেজ সেটিংস
 st.set_page_config(page_title="DiscreteMind AI Ultra Pro", page_icon="🧮", layout="centered")
 
-# শিরোনাম ও হেডার
-st.title("🚀 DiscreteMind AI Ultra Pro")
-st.subheader("Advanced 3D-Enhanced Discrete Mathematics Lab Solver")
-st.write("Presidency University | CSE Dept | AI Innovation Project")
+# শিরোনাম ও হেডার (টাইপো ফিক্সড করা হয়েছে)
+st.markdown("<h1 style='text-align: center; color: #38bdf8;'>🚀 DiscreteMind AI Ultra Pro</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #94a3b8; font-size: 1.2rem; font-weight: 500;'>Advanced 3D-Enhanced Discrete Mathematics Lab Solver</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #64748b; font-size: 0.9rem;'>Presidency University | CSE Dept | AI Innovation Project</p>", unsafe_allow_html=True)
 st.write("---")
 
-# ২. ৩ডি অ্যানিমেটেড মডেল সেকশন (Interactive 3D Math/AI WebGL Model)
+# ২. ৩ডি অ্যানিমেটেড মডেল সেকশন (Interactive 3D Math Topology)
 st.write("### 🌐 Live 3D AI Topology Node Mesh (Lab Presentation Mode)")
 st.caption("মাউস দিয়ে স্ক্রল করে ৩ডি মডেলটি জুম করো এবং ড্র্যাগ করে চারদিকে ঘুরিয়ে স্যারদের দেখাও:")
 
-# ৩ডি ম্যাথমেটিক্যাল নোড জেনারেশন
+# ৩ডি গাণিতিক নোড জেনারেশন
 n_nodes = 40
 x = np.random.standard_normal(n_nodes)
 y = np.random.standard_normal(n_nodes)
@@ -28,8 +28,8 @@ fig = go.Figure(data=[go.Scatter3d(
     mode='markers+lines',
     marker=dict(
         size=6,
-        color=z,                # কালার সেট করা হয়েছে ৩ডি ডেপ্থ অনুযায়ী
-        colorscale='Viridis',   # কালারফুল থিম
+        color=z,
+        colorscale='Viridis',
         opacity=0.8
     ),
     line=dict(
@@ -48,7 +48,6 @@ fig.update_layout(
     height=300
 )
 
-# স্ক্রিনে ৩ডি গ্রাফিক্স শো করা
 st.plotly_chart(fig, use_container_width=True)
 st.write("---")
 
@@ -121,7 +120,7 @@ st.write("")
 # অ্যাকশন বাটনসমূহ
 btn_col1, btn_col2 = st.columns([4, 1])
 with btn_col1:
-    solve_btn = st.button("🚀 এক্সপার্ট এআই সলিউশন জেনারেট করো", use_container_width=True)
+    solve_btn = st.button("🚀 এক্সপার্ট এআই সリューション জেনারেট করো", use_container_width=True)
 with btn_col2:
     if st.button("🗑️ Reset", use_container_width=True):
         st.session_state.input_val = ""
@@ -166,7 +165,6 @@ if solve_btn:
                 status_text.empty()
                 progress_bar.empty()
                 
-                # সাকসেস ফেস্টিভ্যাল ইফেক্ট
                 st.balloons()
                 st.success("🎉 সমাধান সফলভাবে তৈরি হয়েছে!")
                 
@@ -193,4 +191,4 @@ if ans_col3.button("Option C: 16টি (Correct)"):
     st.success("🎉 চমৎকার! সঠিক উত্তর। কারণ Power Set এর উপাদান সংখ্যা হলো 2^4 = 16।")
 
 st.write("---")
-st.markdown("<p style='text-align: center; color: #64748b; font-size: 0.85rem;'>Developed by MD FAZLE RABBI SOHAN | PU CSE Innovation Lab</p>", unsafe_allowed_html=True)
+st.markdown("<p style='text-align: center; color: #64748b; font-size: 0.85rem;'>Developed by MD FAZLE RABBI SOHAN | PU CSE Innovation Lab</p>", unsafe_allow_html=True)
