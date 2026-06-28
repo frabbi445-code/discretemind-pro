@@ -7,17 +7,39 @@ import numpy as np
 # ১. পেজ সেটিংস
 st.set_page_config(page_title="DiscreteMind AI Ultra Pro", page_icon="🧮", layout="centered")
 
-# শিরোনাম ও হেডার (টাইপো ফিক্সড করা হয়েছে)
+# শিরোনাম ও হেডার
 st.markdown("<h1 style='text-align: center; color: #38bdf8;'>🚀 DiscreteMind AI Ultra Pro</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center; color: #94a3b8; font-size: 1.2rem; font-weight: 500;'>Advanced 3D-Enhanced Discrete Mathematics Lab Solver</p>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #64748b; font-size: 0.9rem;'>Presidency University | CSE Dept | AI Innovation Project</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #64748b; font-size: 0.9rem;'>Presidency University | CSE Dept | AI Innovation Project</p>", unsafe_allowed_html=True)
 st.write("---")
 
-# ২. ৩ডি অ্যানিমেটেড মডেল সেকশন (Interactive 3D Math Topology)
+# ২. সাইডবার ডিজাইন (স্টুডেন্ট ইনফো এবং নিরাপদ API Key ইনপুট)
+st.sidebar.header("🎓 Lab Project Profile")
+with st.sidebar.container(border=True):
+    st.write("**Developer:** MD FAZLE RABBI SOHAN")
+    st.write("**Institution:** Presidency University")
+    st.write("**Department:** CSE")
+    st.write("**Course:** Discrete Mathematics")
+
+st.sidebar.write("---")
+st.sidebar.header("🔑 Authentication")
+
+# ইউজার সরাসরি এখান থেকে নতুন API Key বসাবে, ফলে কোড কখনো ব্লক হবে না
+user_api_key = st.sidebar.text_input(
+    "তোমার Gemini API Key টি এখানে বসাও:", 
+    type="password", 
+    placeholder="AI Studio থেকে পাওয়া Key টি পেস্ট করো..."
+)
+st.sidebar.caption("💡 [Google AI Studio](https://aistudio.google.com/) থেকে ফ্রিতে ২ মিনিটে নতুন Key তৈরি করে এখানে বসাতে পারো।")
+
+st.sidebar.write("---")
+st.sidebar.header("🔗 Quick Navigation")
+st.sidebar.page_link("https://presidency.edu.bd/", label="Presidency University Portal", icon="🏫")
+
+# ৩. ৩ডি অ্যানিমেটেড মডেল সেকশন (Interactive 3D Math Topology)
 st.write("### 🌐 Live 3D AI Topology Node Mesh (Lab Presentation Mode)")
 st.caption("মাউস দিয়ে স্ক্রল করে ৩ডি মডেলটি জুম করো এবং ড্র্যাগ করে চারদিকে ঘুরিয়ে স্যারদের দেখাও:")
 
-# ৩ডি গাণিতিক নোড জেনারেশন
 n_nodes = 40
 x = np.random.standard_normal(n_nodes)
 y = np.random.standard_normal(n_nodes)
@@ -26,16 +48,8 @@ z = np.random.standard_normal(n_nodes)
 fig = go.Figure(data=[go.Scatter3d(
     x=x, y=y, z=z,
     mode='markers+lines',
-    marker=dict(
-        size=6,
-        color=z,
-        colorscale='Viridis',
-        opacity=0.8
-    ),
-    line=dict(
-        color='#38bdf8',
-        width=1.5
-    )
+    marker=dict(size=6, color=z, colorscale='Viridis', opacity=0.8),
+    line=dict(color='#38bdf8', width=1.5)
 )])
 
 fig.update_layout(
@@ -47,35 +61,10 @@ fig.update_layout(
     ),
     height=300
 )
-
 st.plotly_chart(fig, use_container_width=True)
 st.write("---")
 
-# ৩. সাইডবার ডিজাইন
-st.sidebar.header("🎓 Lab Project Profile")
-with st.sidebar.container(border=True):
-    st.write("**Developer:** MD FAZLE RABBI SOHAN")
-    st.write("**Institution:** Presidency University")
-    st.write("**Department:** CSE")
-    st.write("**Course:** Discrete Mathematics")
-    st.caption("🔥 Status: Active & Secured")
-
-st.sidebar.write("---")
-st.sidebar.header("🔗 Quick Navigation")
-st.sidebar.page_link("https://presidency.edu.bd/", label="Presidency University Portal", icon="🏫")
-st.sidebar.page_link("https://aistudio.google.com/", label="Google AI Studio", icon="🔑")
-
-# ৪. এপিআই কি কনফিগারেশন (গিটহাবের ব্লক এড়ানোর ওল্ড ট্রিক)
-a = "AQ.Ab8RN"
-b = "6LuMWnU"
-c = "QaZOOfRQ"
-d = "TKbgXYEX"
-e = "3AyP6dwh"
-f = "jlmYymtq"
-g = "n-eZgw"
-SECURE_KEY = f"{a}{b}{c}{d}{e}{f}{g}"
-
-# ৫. ড্রপডাউন মেনু
+# ৪. ডিসক্রিট ম্যাথ টপিক সিলেকশন
 topic = st.selectbox(
     "🎯 সলভ করার জন্য ডিসক্রিট ম্যাথ টপিকটি সিলেক্ট করো:", 
     [
@@ -85,7 +74,7 @@ topic = st.selectbox(
     ]
 )
 
-# ৬. স্মার্ট প্র্যাকটিস কুইক বাটনসমূহ
+# ৫. স্মার্ট প্র্যাকটিস কুইক বাটনসমূহ
 st.write("💡 **স্মার্ট প্র্যাকটিস টুলস (যেকোনো একটি বাটনে ক্লিক করো):**")
 col1, col2, col3 = st.columns(3)
 
@@ -128,20 +117,23 @@ with btn_col2:
 
 # 🧮 এআই ব্যাকএন্ড সলভিং লজিক
 if solve_btn:
-    if not user_query:
+    if not user_api_key:
+        st.error("❌ অ্যাপটি চালানোর জন্য বামপাশের সাইডবারে তোমার Gemini API Key টি বসাতে হবে!")
+    elif not user_query:
         st.warning("⚠️ আগে সলভ করার জন্য কোনো প্রশ্ন ইনপুট দাও বা উপরের উদাহরণ বাটনে ক্লিক করো!")
     else:
         progress_bar = st.progress(0)
         status_text = st.empty()
         
         for percent_complete in range(10, 101, 30):
-            time.sleep(0.15)
+            time.sleep(0.1)
             progress_bar.progress(percent_complete)
             status_text.markdown(f"⚙️ **এআই ডিপ লার্নিং লজিক প্রসেস করছে... {percent_complete}%**")
             
         with st.spinner("✨ ফাইনাল সলিউশন ফরম্যাট করা হচ্ছে..."):
             try:
-                genai.configure(api_key=SECURE_KEY)
+                # ইউজারের দেওয়া এপিআই কি দিয়ে রান হচ্ছে
+                genai.configure(api_key=user_api_key)
                 model = genai.GenerativeModel('gemini-1.5-flash')
                 
                 prompt = f"""
@@ -153,7 +145,7 @@ if solve_btn:
                 Strict Output Structure:
                 1. 📝 **Mathematical Analysis / Given Data**: Clearly define the parameters or variables given.
                 2. 🛠️ **Step-by-Step Derivation**: Numbered logical steps breaking down the core formulas or laws applied.
-                3. 📊 **Visual Representation/Table (if applicable)**: Render markdown tables for Truth Tables or Venn breakdowns elegantly.
+                3. 📊 **Visual Representation/Table (if applicable)**: Render markdown tables for Truth Tables elegantly.
                 4. 🎯 **Final Conclusion**: A bold final conclusion box stating the absolute definitive mathematical answer.
                 """
                 
@@ -174,11 +166,11 @@ if solve_btn:
             except Exception as e:
                 status_text.empty()
                 progress_bar.empty()
-                st.error(f"❌ রান-টাইম এরর: {e}")
+                st.error(f"❌ রান-টাইম এরর: {e}\n\nসম্ভবত তোমার এপিআই কি-টি সঠিক নয় বা এক্সপায়ার হয়েছে। দয়া করে গুগল আই স্টুডিও থেকে নতুন কি নিয়ে চেষ্টা করো।")
 
 st.write("---")
 
-# 🧠 ৭. কালারফুল ইন্টারঅ্যাক্টিভ কুইজ মডিউল
+# 🧠 ৬. কালারফুল ইন্টারঅ্যাক্টিভ কুইজ মডিউল
 st.subheader("🧠 Interactive Lab Quiz (Self-Test)")
 st.info("❓ **প্রশ্ন:** If a set has 4 elements, how many elements are there in its Power Set?")
 
